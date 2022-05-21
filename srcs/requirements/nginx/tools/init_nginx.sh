@@ -10,4 +10,4 @@ chown -R www-data /var/www/*
 chmod -R 755 /var/www/*
 
 # Get SSL certification
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=69/L=Lyon/O=42/CN=tdayde' -keyout /etc/ssl/certs/${DOMAIN}.key -out /etc/ssl/certs/${DOMAIN}.crt
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=69/L=Seoul/O=42/CN=kypark' -keyout /etc/ssl/certs/${DOMAIN}.key -out /etc/ssl/certs/${DOMAIN}.crt
