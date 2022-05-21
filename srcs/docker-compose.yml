@@ -1,0 +1,72 @@
+version: '3'
+services:
+  mysql:
+    container_name: mysql
+    build: 
+      context: ./requirements/mariadb
+      args:
+        - DB_NAME=wordpress
+        - DB_ROOT_PSW=god_pass
+        - DB_USER=wp_user
+        - DB_USER_PSW=toulouse
+    volumes:
+      - vol_mysql:/var/lib/mysql
+    restart: always
+    env_file:
+      - ./.env
+    networks:
+      - nwk_mysql
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    volumes:
+      - vol_wp:/var/www/html
+    restart: always
+    env_file:
+      - ./.env
+    depends_on:
+      - mysql
+    networks:
+      - nwk_nginx
+      - nwk_mysql
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+      args:
+        - DOMAIN=kypark.42.fr
+    restart: always
+    volumes:
+      - vol_wp:/var/www/html
+    env_file:
+      - ./.env
+    ports: 
+      - 443:443
+    depends_on:
+      - mysql
+      - wordpress
+    networks:
+      - nwk_nginx
+
+
+networks:
+  nwk_nginx:
+    driver: bridge
+  nwk_mysql:
+    driver: bridge
+
+volumes:
+  vol_mysql: 
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/kypark/data/vol_mysql
+  vol_wp: 
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/kypark/data/vol_wp
