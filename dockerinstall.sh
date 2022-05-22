@@ -23,4 +23,6 @@ apt-get install docker-compose
 
 usermod -aG docker ${USER}
 
+sudo /bin/sh -c 'echo "127.0.0.1 kypark.42.fr" >> /etc/hosts'
+
 echo  "\033[44;33m@@@It's set up for docker@@@\033[0m\n\n"
