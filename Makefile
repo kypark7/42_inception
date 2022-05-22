@@ -18,8 +18,8 @@ SUR		= \033[7m
 all:
 #			sudo userdel mysql
 #			sudo useradd -u 999 mysql
-#			sudo mkdir -p /home/tdayde/data/vol_mysql
-#			sudo chown -R mysql:mysql /home/tdayde/data/vol_mysql
+#			sudo mkdir -p /home/kypark/data/vol_mysql
+#			sudo chown -R mysql:mysql /home/kypark/data/vol_mysql
 
 #			sudo userdel www-data
 #			sudo useradd -u 999 www-data
